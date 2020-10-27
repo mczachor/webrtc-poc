@@ -47,7 +47,8 @@
 
       function step1 () {
         navigator.getUserMedia({audio: true, video: true}, function(stream){
-          $('#my-video').prop('src', URL.createObjectURL(stream));
+          const video = document.getElementById('my-video');
+          video.srcObject = stream;
           window.localStream = stream;
           step2();
         }, function(){ $('#step1-error').show(); });
@@ -64,7 +65,8 @@
         }
 
         call.on('stream', function(stream){
-          $('#their-video').prop('src', URL.createObjectURL(stream));
+          const video = document.getElementById('their-video');
+          video.srcObject = stream;
         });
 
         window.existingCall = call;
